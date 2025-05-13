@@ -14,13 +14,18 @@ void Moterconfig::reset(){
   moterpow[moterb]=0;
 }
 void Moterconfig::digitalpower(){
-  if(botanf==true){
+  if(botanf==1&&botanf==1){
+    moterpow[moterf]=1;
+    moterpow[moterb]=1;
+  }else if(botanf==1){
     moterpow[moterf]=1;
     moterpow[moterb]=0;
-  }
-  if(botanb==true){
+  }else if(botanb==1){
     moterpow[moterf]=0;
     moterpow[moterb]=1;
+  }else{
+    moterpow[moterf]=0;
+    moterpow[moterb]=0;
   }
   
 }

@@ -9,7 +9,7 @@ Moterconfig widthmoter;
 Moterconfig varticalmoter;
 Moterconfig nankamoter;
 
-#define SV_PIN_1  2
+#define SV_PIN_1  10
 
 
 int x = 0; // aの変数
@@ -115,21 +115,13 @@ void loop() {
   varticalmoter.analogpower();
 
   analogWrite(LEFTMOTER_F,lmoter.moterpow[FRONT]);
-  delay(10);
   analogWrite(LEFTMOTER_B,lmoter.moterpow[BACK]);
-  delay(10);
   analogWrite(RIGHTMOTER_F,rmoter.moterpow[FRONT]);
-  delay(10);
   analogWrite(RIGHTMOTER_B,rmoter.moterpow[BACK]);
-  delay(10);
   digitalWrite(VARTICALMOTER_F,varticalmoter.moterpow[FRONT]);
-  delay(10);
   digitalWrite(VARTICALMOTER_B,varticalmoter.moterpow[BACK]);
-  delay(10);
   digitalWrite(WIDTHMOTER_F,widthmoter.moterpow[FRONT]);
-  delay(10);
   analogWrite(WIDTHMOTER_B,widthmoter.moterpow[BACK]);
-  delay(10);
   servo_1.write(servo_1.angle);
   delay(10);
 }
