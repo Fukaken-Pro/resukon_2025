@@ -96,8 +96,8 @@ def main():
   print(f"Connection from: {client_address2} for Camera 2")
 
   # **カメラごとのフレームキューを作成**
-  frame_queue1 = queue.Queue(maxsize=5)
-  frame_queue2 = queue.Queue(maxsize=5)
+  frame_queue1 = queue.Queue(maxsize=3)
+  frame_queue2 = queue.Queue(maxsize=3)
 
   # **エンコード専用スレッドを開始**
   encode_thread1 = threading.Thread(target=encode_and_send, args=(client_socket1, frame_queue1), daemon=True)
