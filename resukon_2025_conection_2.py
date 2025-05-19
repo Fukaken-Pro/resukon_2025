@@ -33,7 +33,6 @@ class conection:
     if(kaisu<=100):
         line = self.ser.readline().decode('utf-8').rstrip()
         print(line)
-        time.sleep(0.01)
 
   def responseToCommand(self, client, addr):
     start = time.time()
@@ -85,14 +84,11 @@ def conconection():
   z = 0
   while True:
     try:
-        z+=1
-        client, addr = cnc.sv.accept()
+            client, addr = cnc.sv.accept()
       # 別スレッドでクライアントに返答
-        with ThreadPoolExecutor(max_workers=1) as executor:
-            data_get = executor.submit(
-                cnc.responseToCommand, client, addr)
-            cnc.data_return.append(data_get.result())
-            if(not cnc.data_return[-1][0]=="N"):
+                
+            cnc.data_return.append(cnc.responseToCommand(client, addr))
+            if(not type(cnc.data_return[-1][0])==int):
                 cnc.contime.append(cnc.data_return[-1].pop(-1))
                 cnc.data_return[-1]=cnc.data_return[-1][0]
                 #print(cnc.data_return)
@@ -104,15 +100,11 @@ def conconection():
               cnc.data_return.pop(-1)
             elif (len(cnc.data_return) > 10):
               cnc.data_return.pop(0)
-  #       except:
-  #            print("error")
-
-            if z > 2:
-                z = 0
 
     except TimeoutError:
-          print("timeout")
-          cnc.backlog()
+         pass
+#           print("timeout")
+#           cnc.backlog()
 
 
 
